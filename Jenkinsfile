@@ -24,7 +24,7 @@ pipeline {
         branch 'main'
       }
       steps {
-        withCredentials([usernamePassword(credentialsId: 'DOCKERHUB', usernameVariable: 'my_user', passwordVariable: 'my_pass')]) {
+        withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'my_user', passwordVariable: 'my_pass')]) {
           sh "docker login -u ${my_user} -p ${my_pass}"
           sh "docker tag my_django_app paulahakeem/my_django_app:v1"
           sh "docker push paulahakeem/my_django_app:v1"
@@ -34,8 +34,7 @@ pipeline {
 
     stage('Deploy') {
       when {
-        branch 'dev'
-        branch 'master'
+        branch 'main'
       }
       steps {
         sh "docker run -d -p 8000:8000 paulahakeem/my_django_app"
