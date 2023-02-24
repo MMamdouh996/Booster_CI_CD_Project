@@ -1,15 +1,15 @@
-FROM python:3.6
+# FROM python:3.6
+FROM alpine:latest
+# WORKDIR /app
 
-WORKDIR /app
+# COPY . /app
 
-COPY . /app
+# RUN pip install -r requirements.txt
 
-RUN pip install -r requirements.txt
+# RUN python3.6 manage.py makemigrations
 
-RUN python3.6 manage.py makemigrations
+# RUN python3.6 manage.py migrate
 
-RUN python3.6 manage.py migrate
+# EXPOSE 8000
 
-EXPOSE 8000
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
