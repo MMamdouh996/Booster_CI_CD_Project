@@ -18,7 +18,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'my_user', passwordVariable: 'my_pass')]) {
           sh "docker login -u ${my_user} -p ${my_pass}"
-          sh "docker push mohamedmamdouh/djangoapp:v1.0"
+          sh "docker push mohamedmamdouhiv/djangoapp:v1.0"
         }
       }
     }
