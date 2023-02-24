@@ -8,9 +8,9 @@ pipeline {
       }
     }
 
-    stage('Build image') {
+    stage('Build Docker image') {
       steps {
-        sh 'docker build -t my_django_app:v1 .'
+        sh 'docker build . -t mohamedmamdouh/djangoapp:v1.0 '
       }
     }
 
@@ -18,16 +18,15 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'my_user', passwordVariable: 'my_pass')]) {
           sh "docker login -u ${my_user} -p ${my_pass}"
-          sh "docker tag my_django_app mohamedmamdouhiv/my_django_app:v1"
-          sh "docker push mohamedmamdouhiv/my_django_app:v1"
+          sh "docker push mohamedmamdouhiv/djangoapp:v1.0"
         }
       }
     }
 
-    stage('Deploy') {
-      steps {
-        sh "docker run -d -p 8000:8000 mohamedmamdouhiv/my_django_app"
-      }
-    }
+//     stage('Deploy') {
+//       steps {
+//         sh "kubectl "
+//       }
+//     }
   }
 }
